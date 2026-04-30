@@ -1,294 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anne-Claire Chenu</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --navy: #0f1729;
-  --indigo: #6b7ee8;
-  --indigo-light: #eef0fd;
-  --indigo-mid: #c5caef;
-  --teal: #4db8a4;
-  --teal-light: #e6f7f4;
-  --amber: #f59e4a;
-  --amber-light: #fef3e7;
-  --rose: #e8707a;
-  --rose-light: #fdeef0;
-  --bg: #f4f5f8;
-  --surface: #ffffff;
-  --text: #1a1f36;
-  --text-soft: #4a5068;
-  --text-muted: #8b90a8;
-  --border: #e8eaf0;
-  --radius: 12px;
-  --radius-sm: 8px;
-}
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anne-Claire Chenu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.hero { background: var(--navy); padding: 3.5rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(107,126,232,0.18) 0%, transparent 70%); pointer-events: none; }
-.hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(77,184,164,0.12) 0%, transparent 70%); pointer-events: none; }
-.hero-tagline { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 300; font-style: italic; color: var(--indigo-mid); margin-bottom: 0.8rem; }
-.hero-name { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 600; color: #fff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.8rem; }
-.hero-name span { color: var(--indigo); }
-.hero-contact { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem 1.8rem; }
-.hero-contact a, .hero-contact span { color: #8b90a8; text-decoration: none; font-size: 13px; font-weight: 400; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-.hero-contact a:hover { color: var(--indigo); }
-.hero-contact svg { width: 14px; height: 14px; opacity: 0.7; flex-shrink: 0; }
+    :root {
+      --header-bg:   #1a2236;
+      --header-text: #c8d0e0;
+      --blue:        #4e8fd4;
+      --bg:          #f0f2f5;
+      --card:        #ffffff;
+      --ink:         #1a1a2e;
+      --body:        #2d3142;
+      --mid:         #6b7fa3;
+      --light:       #9aa5be;
+      --rule:        #e4e8f0;
+      --tag-border:  #c8d4e8;
+      --tag-text:    #4e6a9a;
+      --date-bg:     #edf0f7;
+      --date-text:   #8a96b0;
+      --company:     #4e8fd4;
+      --note:        #7a8fb5;
+    }
 
-.container { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14.5px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.section { margin-bottom: 2rem; opacity: 0; transform: translateY(18px); animation: fadeUp 0.5s ease forwards; }
-.section:nth-child(1) { animation-delay: 0.08s; }
-.section:nth-child(2) { animation-delay: 0.16s; }
-.section:nth-child(3) { animation-delay: 0.24s; }
-.section:nth-child(4) { animation-delay: 0.32s; }
-.section:nth-child(5) { animation-delay: 0.40s; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--header-bg);
+      padding: 44px 0 40px;
+      text-align: center;
+    }
 
-.section-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--indigo); margin-bottom: 1rem; }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-.card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.5rem 1.75rem; }
+    .header-tagline {
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--header-text);
+      margin-bottom: 16px;
+      opacity: 0.85;
+    }
 
-.summary-text { font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: var(--text-soft); }
+    .header-name {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 28px;
+    }
 
-.skills-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.tag { display: inline-block; font-size: 12.5px; font-weight: 500; padding: 0.35rem 0.9rem; border-radius: 100px; letter-spacing: 0.01em; transition: transform 0.15s, box-shadow 0.15s; cursor: default; }
-.tag:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
-.tag-indigo { background: var(--indigo-light); color: #3d4db5; }
-.tag-teal   { background: var(--teal-light);   color: #1f8c78; }
-.tag-amber  { background: var(--amber-light);  color: #b56e1a; }
-.tag-navy   { background: #edf0f7;             color: #3a4a72; }
+    .header-name .highlight {
+      color: var(--blue);
+    }
 
-.job-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.4rem 1.75rem; margin-bottom: 0.9rem; transition: box-shadow 0.2s; }
-.job-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.job-card:last-child { margin-bottom: 0; }
-.job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
-.job-title { font-size: 0.975rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
-.job-dates { font-size: 11.5px; font-weight: 500; color: var(--text-muted); background: var(--bg); padding: 0.2rem 0.7rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-.job-company { font-size: 12.5px; font-weight: 500; color: var(--indigo); margin-bottom: 0.55rem; }
-.job-summary { font-size: 12.5px; font-style: italic; color: var(--text-muted); margin-bottom: 0.85rem; line-height: 1.6; }
-.job-bullets { list-style: none; }
-.job-bullets li { font-size: 13.5px; color: var(--text-soft); line-height: 1.7; padding-left: 1.1rem; position: relative; margin-bottom: 0.5rem; }
-.job-bullets li:last-child { margin-bottom: 0; }
-.job-bullets li::before { content: '·'; position: absolute; left: 0; color: var(--indigo); font-size: 1.3rem; line-height: 1.35; font-weight: 700; }
-.metric { font-weight: 600; color: var(--text); }
+    .header-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 28px;
+      font-size: 13px;
+      color: var(--header-text);
+    }
 
-.company-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1.5px solid var(--indigo-light); }
-.company-name { font-size: 0.95rem; font-weight: 600; color: var(--indigo); letter-spacing: -0.01em; }
-.role-block { margin-bottom: 0.2rem; }
-.role-title-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
-.role-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-.role-dates { font-size: 11px; font-weight: 500; color: var(--text-muted); background: var(--bg); padding: 0.15rem 0.6rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-.role-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+    .header-contact a {
+      color: var(--header-text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .header-contact a:hover { color: #ffffff; }
 
-.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-.edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.1rem 1.3rem; }
-.edu-degree { font-size: 13.5px; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
-.edu-school { font-size: 12px; color: var(--text-muted); }
+    .icon { font-size: 13px; opacity: 0.7; }
 
-.cert-list { list-style: none; }
-.cert-list li { font-size: 13.5px; color: var(--text-soft); padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.65rem; }
-.cert-list li:last-child { border-bottom: none; padding-bottom: 0; }
-.cert-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 28px 80px;
+    }
 
-footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 1rem; }
+    /* ── SECTION WRAPPER (card) ── */
+    .section-wrap {
+      margin-bottom: 32px;
+    }
 
-@media (max-width: 600px) {
-  .edu-grid { grid-template-columns: 1fr; }
-  .container { padding: 1.5rem 1rem 4rem; }
-}
-</style>
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 14px;
+      padding-left: 2px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 28px 32px;
+      border: 1px solid var(--rule);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--body);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: var(--tag-text);
+      background: transparent;
+      border: 1.5px solid var(--tag-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── EXPERIENCE ── */
+    .role-card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 24px 32px;
+      border: 1px solid var(--rule);
+      margin-bottom: 16px;
+    }
+
+    .role-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .role-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .date-badge {
+      font-size: 12px;
+      color: var(--date-text);
+      background: var(--date-bg);
+      padding: 3px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .company-line {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--company);
+      margin-bottom: 4px;
+    }
+
+    .role-note {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--note);
+      margin-bottom: 10px;
+    }
+
+    .role-sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 14px 0 4px;
+    }
+
+    .role-sub-date {
+      font-size: 12px;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+
+    .bullets {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .bullets li {
+      font-size: 13.5px;
+      color: var(--body);
+      line-height: 1.65;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 7px;
+    }
+
+    .bullets li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      margin-bottom: 12px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .edu-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .edu-sub {
+      font-size: 13px;
+      color: var(--mid);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cert-list li {
+      font-size: 13.5px;
+      color: var(--body);
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .cert-list li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--light);
+      padding: 8px 28px 40px;
+      letter-spacing: 0.04em;
+    }
+  </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-tagline">Partner Sales &amp; AI Adoption · 10+ years at Microsoft, Xandr &amp; Magnite</div>
-  <h1 class="hero-name">Anne <span>Claire</span> Chenu</h1>
-  <div class="hero-contact">
-    <a href="mailto:ac.chenu@gmail.com">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-      ac.chenu@gmail.com
-    </a>
-    <a href="https://linkedin.com/in/anne-claire-chenu-42872340" target="_blank">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
-    </a>
-    <span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      London, UK
-    </span>
-    <a href="tel:07535037578">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5.05 2 2 0 0 1 3.59 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 18z"/></svg>
-      07535 037578
-    </a>
-  </div>
-</div>
-
-<div class="container">
-
-  <!-- ABOUT -->
-  <div class="section">
-    <div class="section-title">About</div>
-    <div class="card">
-      <p class="summary-text">Across 10+ years at Microsoft, Xandr and Magnite, I have helped enterprise clients navigate technology transitions, first with digital advertising, then with AI at Microsoft. I work closely with customers and spend time understanding how their business works and recommend the technology that will genuinely align with their goals.</p>
-    </div>
-  </div>
-
-  <!-- SKILLS -->
-  <div class="section">
-    <div class="section-title">Skills</div>
-    <div class="card">
-      <div class="skills-wrap">
-        <span class="tag tag-indigo">Account Management</span>
-        <span class="tag tag-indigo">Strategic Partnerships</span>
-        <span class="tag tag-indigo">Contract Negotiation</span>
-        <span class="tag tag-indigo">Executive Stakeholder Engagement</span>
-        <span class="tag tag-navy">Team Leadership &amp; Mentoring</span>
-        <span class="tag tag-teal">Digital Advertising &amp; Programmatic</span>
-        <span class="tag tag-amber">Microsoft Copilot</span>
-        <span class="tag tag-amber">Agentic AI</span>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="header-tagline">Partner Sales &amp; AI Adoption · 10+ years at Microsoft, Xandr &amp; Magnite</p>
+      <h1 class="header-name">Anne <span class="highlight">Claire</span> Chenu</h1>
+      <div class="header-contact">
+        <a href="mailto:ac.chenu@gmail.com"><span class="icon">✉</span> ac.chenu@gmail.com</a>
+        <a href="https://linkedin.com/in/anne-claire-chenu-42872340" target="_blank"><span class="icon">in</span> LinkedIn</a>
+        <span><span class="icon">⌖</span> London, UK</span>
+        <a href="tel:07535037578"><span class="icon">✆</span> 07535 037578</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- EXPERIENCE -->
-  <div class="section">
-    <div class="section-title">Experience</div>
+  <main>
 
-    <div class="job-card">
-      <div class="job-header">
-        <div class="job-title">Partner Sales Manager</div>
-        <div class="job-dates">Jan 2022 — Present</div>
+    <!-- ABOUT -->
+    <div class="section-wrap">
+      <p class="section-label">About</p>
+      <div class="card">
+        <p class="about-text">Over 10+ years at Microsoft, Xandr and Magnite, I have helped enterprise clients navigate technology transitions, first with digital advertising, then with AI at Microsoft. I have built enterprise partnerships and driven revenue growth across European markets. I work closely with customers and spend time understanding how their business works and recommend the technology that will genuinely align with their goals.</p>
       </div>
-      <div class="job-company">Microsoft · London</div>
-      <div class="job-summary">Built and managed executive-level relationships with Microsoft's key advertising partners</div>
-      <ul class="job-bullets">
-        <li>Built and managed executive-level relationships with Microsoft's key advertising partners, exceeding individual and team targets two years running</li>
-        <li>Managed partnerships with Dentsu, WPP and key technology platforms to bring Copilot into campaign decision-making, improving results and helping them win new business</li>
-        <li>Shifted market positioning of Copilot from a productivity tool to a revenue driver, reframing client conversations from time saved to revenue generated</li>
-        <li>Scoped how Copilot could plug into agencies' own AI stacks, using MCP to connect with their planning and reporting tools</li>
-        <li>Active mentor in the Microsoft Mentoring Program, supporting the professional development of colleagues across the organisation</li>
-      </ul>
     </div>
 
-    <!-- Xandr grouped -->
-    <div class="job-card">
-      <div class="company-header">
-        <div class="company-name">Xandr · London</div>
-        <div class="job-dates">Apr 2018 — Jan 2022</div>
-      </div>
-
-      <div class="role-block">
-        <div class="role-title-row">
-          <div class="role-title">Senior Director, Tech Sales</div>
-          <div class="role-dates">Mar 2021 — Jan 2022</div>
+    <!-- SKILLS -->
+    <div class="section-wrap">
+      <p class="section-label">Skills</p>
+      <div class="card">
+        <div class="skills-grid">
+          <span class="tag">Strategic Partnerships</span>
+          <span class="tag">Contract Negotiation</span>
+          <span class="tag">Executive Stakeholder Engagement</span>
+          <span class="tag">Team Management &amp; Mentoring</span>
+          <span class="tag">Digital Advertising &amp; Programmatic</span>
+          <span class="tag">Go-to-Market Strategy</span>
+          <span class="tag">EMEA Sales</span>
+          <span class="tag">Cloud &amp; AI Solutions</span>
+          <span class="tag">Agentic AI</span>
+          <span class="tag">Fluent in French</span>
         </div>
-        <div class="job-summary">Publisher Team Lead</div>
-        <ul class="job-bullets">
-          <li>Negotiated and renewed publisher partnership agreements across EMEA including Guardian, Ozone Project and Mail Metro Media retaining <span class="metric">£17M</span> in publisher monthly revenue</li>
-          <li>Supported the UK launch of Netflix's advertising business, coordinating <span class="metric">£5M</span> in monthly buyer spend across programmatic partners</li>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section-wrap">
+      <p class="section-label">Experience</p>
+
+      <!-- Microsoft -->
+      <div class="role-card">
+        <div class="role-header">
+          <span class="role-title">Partner Sales Manager</span>
+          <span class="date-badge">Jan 2022 - Present</span>
+        </div>
+        <p class="company-line">Microsoft · London</p>
+        <p class="role-note">Built and managed executive-level relationships with Microsoft's key advertising partners</p>
+        <ul class="bullets">
+          <li>Built and managed executive-level relationships with Microsoft's key advertising partners, exceeding individual and team targets two years running</li>
+          <li>Drove go-to-market launch for our AI-powered advertising solutions, through identifying new customers, driving adoption to revenue generation</li>
+          <li>Shifted market positioning of Copilot from a productivity tool to a revenue driver, reframing client conversations from time saved to revenue generated</li>
+          <li>Managed partnerships with Dentsu, WPP and key technology platforms to bring Copilot into campaign decision-making, improving results and helping them win new business</li>
+          <li>Active mentor in the Microsoft Mentoring Program, supporting the professional development of colleagues across the organisation</li>
         </ul>
       </div>
 
-      <div class="role-divider"></div>
-
-      <div class="role-block">
-        <div class="role-title-row">
-          <div class="role-title">Director, Tech Sales</div>
-          <div class="role-dates">Apr 2019 — Feb 2021</div>
+      <!-- Xandr -->
+      <div class="role-card">
+        <div class="role-header">
+          <span class="role-title">Xandr · London</span>
+          <span class="date-badge">Apr 2018 - Jan 2022</span>
         </div>
-        <ul class="job-bullets">
-          <li>Led onboarding and upskilling of new publisher partners including Roku and Discovery, enabling them to activate and scale advertising revenue across the UK and Nordics</li>
+
+        <p class="role-sub">Senior Director, Tech Sales</p>
+        <p class="role-sub-date">Mar 2021 - Jan 2022 · Publisher Team Lead</p>
+        <ul class="bullets">
+          <li>Negotiated and renewed publisher partnership agreements across EMEA including Guardian, Ozone Project and Mail Metro Media, retaining £17M in publisher monthly revenue</li>
+          <li>Supported the UK launch of Netflix's advertising business, coordinating £5M in monthly buyer spend across programmatic partners</li>
+        </ul>
+
+        <p class="role-sub">Director, Tech Sales</p>
+        <p class="role-sub-date">Apr 2019 - Feb 2021</p>
+        <ul class="bullets">
+          <li>Entered underpenetrated markets across the UK and Northern Europe, building pipeline from scratch and bringing on net-new partners including Roku and Discovery across streaming and entertainment verticals</li>
           <li>Managed and mentored a team of 6 account managers and developed two team members to senior account manager and account director</li>
         </ul>
-      </div>
 
-      <div class="role-divider"></div>
-
-      <div class="role-block">
-        <div class="role-title-row">
-          <div class="role-title">Publisher Team Lead, Tech Sales</div>
-          <div class="role-dates">Apr 2018 — Mar 2019</div>
-        </div>
-        <div class="job-summary">Fast-tracked from individual contributor to team lead within six months of being hired</div>
-        <ul class="job-bullets">
+        <p class="role-sub">Publisher Team Lead, Tech Sales</p>
+        <p class="role-sub-date">Apr 2018 - Mar 2019</p>
+        <p class="role-note">Fast-tracked from individual contributor to team lead within six months of being hired</p>
+        <ul class="bullets">
           <li>Advised UK and Nordic publishers on how to structure and sell their digital ad inventory, covering auction mechanics, private trading deals and guaranteed placements, to grow and protect their advertising revenue</li>
         </ul>
       </div>
-    </div>
 
-    <!-- Magnite grouped -->
-    <div class="job-card">
-      <div class="company-header">
-        <div class="company-name">Magnite · London &amp; Paris</div>
-        <div class="job-dates">Sep 2014 — Mar 2018</div>
-      </div>
-
-      <div class="role-block">
-        <div class="role-title-row">
-          <div class="role-title">Publisher Team Lead</div>
-          <div class="role-dates">Nov 2017 — Mar 2018 · Paris</div>
+      <!-- Magnite -->
+      <div class="role-card">
+        <div class="role-header">
+          <span class="role-title">Magnite · London &amp; Paris</span>
+          <span class="date-badge">Sep 2014 - Mar 2018</span>
         </div>
-        <div class="job-summary">Stepped in to lead the French and Belgian publisher team at short notice, maintaining full account continuity and retaining key clients through a period of leadership change</div>
-        <ul class="job-bullets">
+
+        <p class="role-sub">Publisher Team Lead</p>
+        <p class="role-sub-date">Nov 2017 - Mar 2018 · Paris</p>
+        <p class="role-note">Stepped in to lead the French and Belgian publisher team at short notice, maintaining full account continuity and retaining key clients through a period of leadership change</p>
+        <ul class="bullets">
           <li>Managed and mentored a team of account managers covering the French and Belgian publisher markets, providing guidance and maintaining high engagement during leadership transition</li>
         </ul>
-      </div>
 
-      <div class="role-divider"></div>
-
-      <div class="role-block">
-        <div class="role-title-row">
-          <div class="role-title">Account Manager</div>
-          <div class="role-dates">Sep 2014 — Oct 2017 · London</div>
-        </div>
-        <div class="job-summary">Managed and grew a book of business of premium UK and Nordic publishers</div>
-        <ul class="job-bullets">
-          <li>Grew advertising revenue <span class="metric">12% YoY</span> across a portfolio of premium UK and French publishers including Guardian, Northern &amp; Shell and Reach Plc</li>
+        <p class="role-sub">Account Manager</p>
+        <p class="role-sub-date">Sep 2014 - Oct 2017 · London</p>
+        <p class="role-note">Managed and grew a book of business of premium UK and Nordic publishers</p>
+        <ul class="bullets">
+          <li>Grew advertising revenue 12% YoY across a portfolio of premium UK and French publishers including Guardian, Northern &amp; Shell and Reach Plc</li>
           <li>Advised publishers on how to package and sell their digital advertising inventory to maximise revenue from their properties</li>
           <li>Ran client workshops helping publishers understand and make the most of the digital advertising technology they were using</li>
         </ul>
       </div>
+
     </div>
 
-  </div>
-
-  <!-- EDUCATION -->
-  <div class="section">
-    <div class="section-title">Education</div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-degree">Executive Education: Gen AI for Leaders</div>
-        <div class="edu-school">London Business School</div>
+    <!-- EDUCATION -->
+    <div class="section-wrap">
+      <p class="section-label">Education</p>
+      <div class="card">
+        <div class="edu-item">
+          <p class="edu-title">Executive Education: Gen AI for Leaders</p>
+          <p class="edu-sub">London Business School</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-title">Master in Business Management</p>
+          <p class="edu-sub">Skema Business School, France</p>
+        </div>
       </div>
-      <div class="edu-card">
-        <div class="edu-degree">Master in Business Management</div>
-        <div class="edu-school">Skema Business School, France</div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section-wrap">
+      <p class="section-label">Certifications</p>
+      <div class="card">
+        <ul class="cert-list">
+          <li>Azure AI fundamentals, Microsoft AI-900</li>
+          <li>Copilot fundamentals</li>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <!-- CERTIFICATIONS -->
-  <div class="section">
-    <div class="section-title">Certifications</div>
-    <div class="card">
-      <ul class="cert-list">
-        <li><span class="cert-dot"></span>Azure AI fundamentals, Microsoft AI-900</li>
-        <li><span class="cert-dot"></span>Copilot fundamentals</li>
-      </ul>
-    </div>
-  </div>
+  </main>
 
-</div>
-
-<footer>Anne-Claire Chenu &nbsp;·&nbsp; London, UK &nbsp;·&nbsp; Updated April 2026</footer>
+  <footer>
+    Anne-Claire Chenu · London, UK · Updated April 2026
+  </footer>
 
 </body>
 </html>
